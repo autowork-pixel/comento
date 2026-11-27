@@ -3,3 +3,5 @@
 /* Meta 목록의 고정된 선택·설정·이름 열 */
 .grid table{min-width:1540px}.grid th:nth-child(1),.grid td:nth-child(1){position:sticky;left:0;width:46px;min-width:46px;background:#fff;z-index:2;text-align:center}.grid th:nth-child(2),.grid td:nth-child(2){position:sticky;left:46px;width:103px;min-width:103px;background:#fff;z-index:2;text-align:center}.grid th:nth-child(3),.grid td:nth-child(3){position:sticky;left:149px;width:275px;min-width:275px;background:#fff;z-index:2;border-right:1px solid #d5dde5}.grid th:nth-child(-n+3){background:#fafbfd;z-index:4}.grid tr.selected td:nth-child(-n+3){background:#e8f5f0}.grid tr:hover td:nth-child(-n+3){background:#f4f9fe}.grid th:nth-child(8),.grid th:nth-child(12){min-width:180px}
 
+.grid th:nth-child(9),.grid th:nth-child(14){min-width:190px}.grid th:nth-child(12),.grid th:nth-child(13){min-width:130px}
+
