@@ -7,7 +7,7 @@ function decodeBase64Url(value) {
 }
 
 async function verify(token, secret) {
-  if (!secret || !token || !/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(token)) return null;
+  if (!secret || secret.length < 32 || !token || !/^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(token)) return null;
   const [encoded, signature] = token.split('.');
   try {
     const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
