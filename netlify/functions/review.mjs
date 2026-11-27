@@ -6,7 +6,7 @@ const json = (value, status = 200) => new Response(JSON.stringify(value), {
 
 function authorized(request) {
   const secret = process.env.ACCESS_SIGNING_KEY;
-  if (!secret) return false;
+  if (!secret || secret.length < 32) return false;
   const token = request.headers.get('cookie')?.split(';').map(part => part.trim()).find(part => part.startsWith('comento_session='))?.slice(16)
     || request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || '';
   const [encoded, signature, extra] = token.split('.');
