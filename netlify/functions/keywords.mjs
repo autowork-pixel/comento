@@ -8,15 +8,16 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
 function authorized(request) {
   const secret = process.env.ACCESS_SIGNING_KEY;
   if (!secret) return false;
-  const token = request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || '';
+  const token = request.headers.get('cookie')?.split(';').map(part => part.trim()).find(part => part.startsWith('comento_session='))?.slice(16)
+    || request.headers.get('authorization')?.replace(/^Bearer\s+/i, '') || '';
   const [encoded, signature, extra] = token.split('.');
   if (!encoded || !signature || extra) return false;
   const expected = createHmac('sha256', secret).update(encoded).digest('base64url');
   const left = Buffer.from(signature), right = Buffer.from(expected);
   if (left.length !== right.length || !timingSafeEqual(left, right)) return false;
   try {
-    const { exp, studentId } = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
-    return typeof studentId === 'string' && studentId.length > 0 && Number(exp) > Date.now();
+    const { exp, nbf, studentId } = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
+    return typeof studentId === 'string' && studentId.length > 0 && Number(exp) > Date.now() && (!nbf || Number(nbf) <= Date.now());
   } catch { return false; }
 }
 
