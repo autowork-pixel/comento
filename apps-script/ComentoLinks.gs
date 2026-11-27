@@ -16,6 +16,7 @@ function onOpen() {
 function signingKey_() {
   const key = PropertiesService.getScriptProperties().getProperty('ACCESS_SIGNING_KEY');
   if (!key) throw new Error('앱스 스크립트의 스크립트 속성에 ACCESS_SIGNING_KEY를 먼저 설정하세요. Netlify에도 같은 값을 설정해야 합니다.');
+  if (key.length < 32) throw new Error('ACCESS_SIGNING_KEY 값은 32자 이상의 임의 문자열이어야 합니다.');
   return key;
 }
 
