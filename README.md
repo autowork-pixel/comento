@@ -1,6 +1,6 @@
 # 코멘토 광고 실습실
 
-`index.html`과 `naver.html`은 네이버애즈 파워링크 실습 화면입니다. `meta.html`과 `studio.html`은 Meta 광고 관리자 실습 화면입니다.
+첫 화면인 `index.html`은 `meta.html`로 이동합니다. `naver.html`은 네이버애즈 파워링크 실습 화면입니다.
 
 ## Meta 광고 관리자 실습
 
@@ -30,4 +30,3 @@ Netlify의 `netlify/functions/keywords.mjs`는 서버 환경변수 `NAVER_API_KE
 `netlify/functions/review.mjs`는 `OPENAI_API_KEY`를 서버에서 사용하며, 같은 액세스 토큰 검증을 거친 뒤에만 소재 평가를 실행합니다. 기본 모델은 `gpt-6-luna`이며 `OPENAI_MODEL` 환경변수로 바꿀 수 있습니다.
 
 참고한 화면: 2026-11-27 사용자 계정에 열린 네이버애즈의 파워링크 캠페인 목록, 캠페인 생성, 광고그룹 목록·생성, 키워드 등록 화면.
-
